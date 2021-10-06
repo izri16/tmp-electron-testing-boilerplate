@@ -16,9 +16,16 @@ export default {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'ts-loader',
-        },
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              plugins: [
+                process.env.NODE_ENV !== 'production' && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
+          },
+        ],
       },
     ],
   },
@@ -37,11 +44,23 @@ export default {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],
+    fallback: {
+      // https://stackoverflow.com/questions/68707553/uncaught-referenceerror-buffer-is-not-defined
+      "buffer": require.resolve("buffer")
+    }
   },
 
   plugins: [
+    // https://stackoverflow.com/questions/68707553/uncaught-referenceerror-buffer-is-not-defined
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
     }),
   ],
+  experiments: {
+    asyncWebAssembly: true,
+    topLevelAwait: true,
+  },
 };

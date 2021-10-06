@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 import './App.global.css';
+import {csl} from './cardano-serialization-lib-wrapper';
+
+function test() {
+  return Buffer.from(
+    csl.Bip32PublicKey.from_bytes(Buffer.from('00000000'.repeat(16), 'hex'))
+      .derive(47)
+      .as_bytes()
+  ).toString('hex');
+}
 
 const Hello = () => {
+  useEffect(() => {
+    // eslint-disable-next-line
+    console.log('test', test())
+  }, []);
+
   return (
     <div>
       <div className="Hello">

@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 1212;
 const manifest = path.resolve(webpackPaths.dllPath, 'renderer.json');
 const requiredByDLLConfig = module.parent.filename.includes(
-  'webpack.config.renderer.dev.dll'
+  'webpack.config.renderer.dev.dll.babel'
 );
 
 /**
@@ -265,6 +265,13 @@ export default merge(baseConfig, {
     headers: { 'Access-Control-Allow-Origin': '*' },
     static: {
       publicPath: '/',
+    },
+    client: {
+      logging: "info",
+      overlay: {
+        errors: false,
+        warnings: false,
+      }
     },
     historyApiFallback: {
       verbose: true,

@@ -1,5 +1,5 @@
 import rimraf from 'rimraf';
-import webpackPaths from '../configs/webpack.paths.ts';
+import webpackPaths from '../configs/webpack.paths';
 import process from 'process';
 
 const args = process.argv.slice(2);

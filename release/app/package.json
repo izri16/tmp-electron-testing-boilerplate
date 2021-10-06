@@ -10,9 +10,17 @@
     "url": "https://github.com/electron-react-boilerplate"
   },
   "scripts": {
-    "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
-    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.js",
+    "electron-rebuild": "node -r ../../.erb/scripts/babel-register ../../.erb/scripts/electron-rebuild.js",
+    "link-modules": "node -r ../../.erb/scripts/babel-register ../../.erb/scripts/link-modules.js",
     "postinstall": "npm run electron-rebuild && npm run link-modules"
+  },
+  "dependencies": {
+    "@ledgerhq/hw-transport-node-hid": "^5.51.1",
+    "trezor-connect-node": "npm:trezor-connect@8.2.0-extended"
+  },
+  "resolutions": {
+    "usb": ">=1.7.1",
+    "ansi-regex": ">=5.0.1"
   },
   "license": "MIT"
 }
