@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.common.json",
+  "references": [
+    {
+      "path": "../common"
+    }
+  ],
+  "compilerOptions": {
+    "lib": ["dom", "esnext"],
+    "jsx": "react",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "src/main.prod.js",
+    "src/renderer.prod.js",
+    "src/dist",
+    "src/dist-web",
+    ".erb/dll",
+    "node_modules"
+  ]
+}

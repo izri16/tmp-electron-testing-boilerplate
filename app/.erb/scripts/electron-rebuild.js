@@ -10,7 +10,7 @@ if (
 ) {
   // Getting build fails with --parallel flag
   const electronRebuildCmd =
-    '../../node_modules/.bin/electron-rebuild --force --types prod,dev,optional --module-dir .';
+    '../../node_modules/.bin/electron-rebuild --force --version 15.1.0 --types prod,dev,optional --module-dir .';
   const cmd =
     process.platform === 'win32'
       ? electronRebuildCmd.replace(/\//g, '\\')
